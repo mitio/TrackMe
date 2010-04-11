@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100411181612) do
+ActiveRecord::Schema.define(:version => 20100411195731) do
+
+  create_table "tracks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "is_public",                                 :null => false
+    t.decimal  "rating",      :precision => 2, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"
