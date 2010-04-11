@@ -1,0 +1,139 @@
+body
+{
+  background-color: #775B30;
+  color: #333;
+}
+
+body, p, ol, ul, td
+{
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre
+{
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+input
+{
+  background-color: #EFEFEF;
+}
+
+a
+{
+  color: #000;
+}
+a:visited
+{
+  color: #666;
+}
+/*a:hover
+{
+  color: #FF9C00;
+  background-color:#925900;
+}*/
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.clear
+{
+    clear: both;
+    display: block;
+}
+
+.main
+{
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 5px #E0E0E0;
+  min-height: 500px; 
+  background-color: #F0D2A3;
+}
+
+.main_frame
+{
+  background-color: #E0E0E0;
+  padding: 5px;
+}
+
+.content
+{
+  padding: 5px 10px;
+}
+ul.menu
+{
+  background-color: #F0D2A3;
+  margin: 0px;
+  padding: 0px;
+}
+ul.menu li
+{
+  float: left;
+  list-style: none;
+  margin-right: 5px;
+  background-color: #FF9C00;
+  padding: 3px 15px;
+}
+.header_box
+{
+  padding-top: 10px;
+  background-color: #FFC466;
+  min-height: 50px;
+}
+
+.header_box h1
+{
+  text-align: center;
+  color: #775B30;
+}
+
+.header_box div
+{
+  margin-right: 10px; 
+  text-align: right;
+}
+
+textarea
+{
+  width: 600px;
+  height: 50px;
+}
