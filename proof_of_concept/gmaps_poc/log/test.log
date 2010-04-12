@@ -1,0 +1,15 @@
+
+
+Processing MainController#index (for 0.0.0.0 at 2010-04-12 23:02:07) [GET]
+Rendering main/index
+Completed in 16ms (View: 14, DB: 0) | 200 OK [http://test.host/main]
+
+
+Processing MainController#index (for 0.0.0.0 at 2010-04-12 23:02:55) [GET]
+Rendering main/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/main]
+
+
+Processing MainController#index (for 0.0.0.0 at 2010-04-12 23:04:13) [GET]
+Rendering main/index
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://test.host/]

@@ -1,0 +1,15 @@
+<h1>Google maps tracks: Proof of concept</h1>
+
+<div id="map_canvas" style="width: 60%; height: 60%;"></div>
+
+<script type="text/javascript">
+    load_google_maps([<%=h @coordinates.map {|pair| "new p(" + pair[:x].to_s + ", "  + pair[:y].to_s + ")"}.join(', ') %>]);
+</script>
+
+
+coordinates:<br>
+<% @coordinates.each do |pair| %>
+  <%=h "x: " + pair[:x].to_s + ", y: " + pair[:y].to_s %><br>
+<% end %>
+
+
