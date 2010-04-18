@@ -1,3 +1,42 @@
-
+<p>
+  <div>Name: <%= @track.name %></div>
+  <div>Description: <%= @track.description%></div>
+</p>
+   <br />
+  <table class='list'>
+    <thead>
+      <tr>
+        <td colspan='5'>Tracked coordinates:</td>
+      <tr>
+        <td>Lat</td>
+        <td>Lng</td>
+        <td>Time</td>
+        <td>Dist (km)</td>
+        <td>Speed (km/h)</td>
+      </tr>
+    </thead>
+  <%
+  prev_coordinate = nil
+  total_dist = dist = 0
+  all_coordinates = @track.coordinates(:order => "tracked_at DESC")
+  all_coordinates.each do |c|
+  %>
+    <tr class='<%= cycle(:even, :odd)%>'>
+      <td><%= c.lat %></td>
+      <td><%= c.lng %></td>
+      <td><%= c.tracked_at %></td>
+      <td><%= dist = c.distance(prev_coordinate) unless prev_coordinate.nil? %></td>
+      <td><%= c.speed(prev_coordinate, dist) unless prev_coordinate.nil? %></td>
+    </tr>
+  <%
+  prev_coordinate = c
+  total_dist += dist
+  end
+  %>
+  </table>
+  <div>
+    Total dist: <%= total_dist %> km<br />
+    Average speed: <%= all_coordinates.first.speed all_coordinates.last, total_dist %> km/h
+  </div>
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>

@@ -9,15 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100411195731) do
+ActiveRecord::Schema.define(:version => 20100418194343) do
+
+  create_table "coordinates", :force => true do |t|
+    t.integer  "track_id"
+    t.decimal  "lat",        :precision => 9, :scale => 6
+    t.decimal  "lng",        :precision => 9, :scale => 6
+    t.datetime "tracked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tracks", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "is_public",                                 :null => false
-    t.decimal  "rating",      :precision => 2, :scale => 2
+    t.boolean  "is_public",   :null => false
+    t.decimal  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

@@ -137,3 +137,33 @@ textarea
   width: 600px;
   height: 50px;
 }
+
+
+/* list table styles */
+
+table.list
+{
+  /*border: 1px solid #000;*/
+  border-collapse: collapse;
+}
+
+table.list td
+{
+  padding-left: 5px;
+}
+
+table.list thead
+{
+  font-weight: bold;
+}
+
+table.list tr.even
+{
+  background-color: #FFC466;
+}
+
+table.list tr.odd
+{
+  background-color: #F0D2A3;
+}
+/* END list table styles */
