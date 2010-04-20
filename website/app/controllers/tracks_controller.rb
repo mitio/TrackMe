@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.xml
   def index
-    @tracks = Track.find :all, :conditions => {:user_id, current_user.id}
+    @tracks = current_user.tracks
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class TracksController < ApplicationController
   # GET /tracks/1
   # GET /tracks/1.xml
   def show
-    @track = Track.find(params[:id])
+    @track = Track.find(params[:id], :conditions => { :user_id => current_user.id })
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class TracksController < ApplicationController
 
   # GET /tracks/1/edit
   def edit
-    @track = Track.find(params[:id])
+    @track = Track.find(params[:id], :conditions => { :user_id => current_user.id })
   end
 
   # POST /tracks
@@ -61,7 +61,7 @@ class TracksController < ApplicationController
   # PUT /tracks/1
   # PUT /tracks/1.xml
   def update
-    @track = Track.find(params[:id])
+    @track = Track.find(params[:id], :conditions => { :user_id => current_user.id })
 
     respond_to do |format|
       if @track.update_attributes(params[:track])
@@ -78,7 +78,7 @@ class TracksController < ApplicationController
   # DELETE /tracks/1
   # DELETE /tracks/1.xml
   def destroy
-    @track = Track.find(params[:id])
+    @track = Track.find(params[:id], :conditions => { :user_id => current_user.id })
     @track.destroy
 
     respond_to do |format|
