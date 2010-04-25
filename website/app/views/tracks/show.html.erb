@@ -16,7 +16,7 @@
 	<table class="list">
 		<thead>
 			<tr>
-				<td colspan='5'>Tracked coordinates:</td>
+				<td colspan="5">Tracked coordinates:</td>
 			<tr>
 				<td>Lat</td>
 				<td>Lng</td>
@@ -25,6 +25,7 @@
 				<td>Speed (km/h)</td>
 			</tr>
 		</thead>
+                <tbody>
 		<% all_coordinates.each do |c| %>
 			<tr class="<%= cycle(:even, :odd)%>">
 				<td><%= c.lat %></td>
@@ -38,6 +39,7 @@
 				total_dist += dist
 			%>
 		<% end %>
+                </tbody>
 	</table>
 	<div>
 		Total dist: <%= total_dist %> km<br />

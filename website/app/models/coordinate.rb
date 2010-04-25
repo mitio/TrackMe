@@ -1,8 +1,12 @@
 class Coordinate < ActiveRecord::Base
   belongs_to :track
   
-  EARTH_RADIUS = 6378.137 #km
+  validates_presence_of :track_id, :lat, :lng, :tracked_at
   
+  attr_accessible :track_id, :lat, :lng, :tracked_at
+  
+  
+  EARTH_RADIUS = 6378.137 #km
   
 #Conversion of the degrees, minutes and seconds in a decimal value:
 #Latitude Frankfurt.: 50 + (06 / 60) + (44 / 3600) = 50.11222°

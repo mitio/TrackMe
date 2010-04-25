@@ -73,6 +73,16 @@ a:visited
   list-style: square;
 }
 
+.notice
+{
+  color: green;
+}
+
+.error
+{
+  color: red;
+}
+
 .clear
 {
     clear: both;
