@@ -31,8 +31,12 @@
 				<td><%= c.lat %></td>
 				<td><%= c.lng %></td>
 				<td><%= c.tracked_at %></td>
-				<td><%= dist = c.distance(prev_coordinate) unless prev_coordinate.nil? %></td>
-				<td><%= c.speed(prev_coordinate, dist) unless prev_coordinate.nil? %></td>
+				<td>
+                                    <%= format("%.2f", dist = c.distance(prev_coordinate)) unless prev_coordinate.nil? %>
+                                </td>
+				<td>
+                                    <%= format("%.2f", c.speed(prev_coordinate, dist)) unless prev_coordinate.nil? %>
+                                </td>
 			</tr>
 			<%
 				prev_coordinate = c
@@ -42,8 +46,8 @@
                 </tbody>
 	</table>
 	<div>
-		Total dist: <%= total_dist %> km<br />
-		Average speed: <%= all_coordinates.first.speed all_coordinates.last, total_dist %> km/h
+		Total dist: <%= format "%.2f", total_dist %> km<br />
+		Average speed: <%= format "%.2f", all_coordinates.first.speed(all_coordinates.last, total_dist) %> km/h
 	</div>
 <% end %>
 
