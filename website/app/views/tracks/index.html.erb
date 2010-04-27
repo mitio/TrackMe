@@ -1,0 +1,27 @@
+<h1>Listing tracks</h1>
+
+<table class="list">
+  <thead>
+  <tr>
+    <td>Name</td>
+    <td>Public?</td>
+    <td colspan="3"/>
+  </tr>
+  </thead>
+  
+  <tbody>
+<% @tracks.each do |track| %>
+  <tr class='<%= cycle(:even, :odd) %>'>
+    <td><%= track.name %></td>
+    <td><%= track.is_public ? "yes" : "no" %>
+    <td><%= link_to 'Show', track %>
+    <%= link_to 'Edit', edit_track_path(track) %>
+    <%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New track', new_track_path %>

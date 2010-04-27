@@ -1,0 +1,14 @@
+<h1>Editing track</h1>
+
+<% form_for(@track) do |f| %>
+  <%= f.error_messages %>
+  
+  <%= render :partial => "track_form", :locals => {:f => f} %>
+  
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @track %> |
+<%= link_to 'Back', tracks_path %>

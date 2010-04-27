@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  track_id: 1
+  lat: 9.99
+  lng: 9.99
+  tracked_at: 2010-04-18 22:23:31
+
+two:
+  track_id: 1
+  lat: 9.99
+  lng: 9.99
+  tracked_at: 2010-04-18 22:23:31
