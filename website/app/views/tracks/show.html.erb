@@ -32,11 +32,11 @@
 				<td><%= c.lng %></td>
 				<td><%= c.tracked_at %></td>
 				<td>
-                                    <%= format("%.2f", dist = c.distance(prev_coordinate)) unless prev_coordinate.nil? %>
-                                </td>
+					<%= format("%.2f", dist = c.distance(prev_coordinate)) unless prev_coordinate.nil? %>
+				</td>
 				<td>
-                                    <%= format("%.2f", c.speed(prev_coordinate, dist)) unless prev_coordinate.nil? %>
-                                </td>
+					<%= format("%.2f", c.speed(prev_coordinate, dist)) unless prev_coordinate.nil? %>
+				</td>
 			</tr>
 			<%
 				prev_coordinate = c

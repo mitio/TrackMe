@@ -44,10 +44,11 @@ class Coordinate < ActiveRecord::Base
   def speed coordinate, dist = nil
     dist = dist.nil? ? self.distance(coordinate) : dist
     
-    if(self.tracked_at - coordinate.tracked_at != 0)
+    if (self.tracked_at - coordinate.tracked_at != 0)
       return dist / ((self.tracked_at - coordinate.tracked_at).abs / 3600 )
     end
-    return nil
+
+    return 0
   end
 end
 
