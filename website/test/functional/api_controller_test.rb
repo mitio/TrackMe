@@ -5,4 +5,8 @@ class ApiControllerTest < ActionController::TestCase
   test "the truth" do
     assert true
   end
+  
+  #test "post_test" do
+  #  post :login, :api => {:login => 'Tokay-Ihto', :password => '1234'}
+  #end
 end

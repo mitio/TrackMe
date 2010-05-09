@@ -1,1 +1,2 @@
-xml.error @error_msg
+xml.status "error"
+xml.message @error_msg
