@@ -1,7 +1,6 @@
 class TracksController < ApplicationController
   before_filter :login_required
 
-  
   # GET /tracks
   # GET /tracks.xml
   def index

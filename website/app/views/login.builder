@@ -1,0 +1,1 @@
+xml.session_id request.session_options[:id]

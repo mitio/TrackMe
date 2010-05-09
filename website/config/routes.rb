@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'home'
   
-  map.connect ':controller/:action', :conditions => { :method => :post }
+  # map.connect 'api/:action', :controller => 'api', :conditions => { :method => :post }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -55,4 +55,5 @@ ActionController::Routing::Routes.draw do |map|
     
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action.:format'
 end
