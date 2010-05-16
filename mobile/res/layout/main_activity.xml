@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView android:layout_width="fill_parent"
+			  android:layout_height="wrap_content" 
+			  android:text="@string/main_activity_title">
+    </TextView>
+	<Button android:id="@+id/btnStartSendCoords"
+			android:text="@string/start_service" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+	</Button>
+	<Button android:id="@+id/btnStopSendCoords"
+			android:text="@string/stop_service" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+	</Button>
+	<Button android:id="@+id/btnSettings"
+			android:text="@string/settings" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+	</Button>
+	<Button android:id="@+id/btnShowCurrentCoords"
+			android:text="Show Current" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+	</Button>
+	
+	<EditText android:id="@+id/edtLatitude" 
+		 	  android:layout_width="120px" 
+		 	  android:layout_height="50px"
+		 	  android:singleLine="true" android:textSize="18sp" 
+		 	  android:layout_x="152px" android:layout_y="71px">
+	</EditText>	
+	<EditText android:id="@+id/edtLongitude" 
+		 	  android:layout_width="120px" 
+		 	  android:layout_height="50px"
+		 	  android:singleLine="true" android:textSize="18sp" 
+		 	  android:layout_x="300px" android:layout_y="71px">
+	</EditText>
+	<Button android:id="@+id/btnLogout" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:text="@string/logout">
+	</Button>	
+
+</LinearLayout>

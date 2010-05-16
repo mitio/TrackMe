@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout android:id="@+id/widget0"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<Button android:id="@+id/btnLogin" 
+			android:layout_width="100px"
+			android:layout_height="50px" 
+			android:text="@string/login" 
+			android:layout_x="50px"
+			android:layout_y="249px">
+	</Button>
+	<EditText android:id="@+id/edtUserName" android:layout_width="120px" android:layout_height="50px" android:singleLine="true" android:textSize="18sp" android:layout_x="152px" android:layout_y="71px">
+	</EditText>
+	<TextView android:id="@+id/txvUserName" 
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" 
+			  android:text="@string/username"
+			  android:layout_x="57px" 
+			  android:layout_y="85px">
+	</TextView>
+	
+	
+	<TextView android:id="@+id/txvPassword" 
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" 
+			  android:text="@string/password"
+			  android:layout_x="57px" 
+			  android:layout_y="168px">
+	</TextView>
+	<EditText android:id="@+id/edtPassword" 
+			  android:layout_width="120px"
+			  android:layout_height="50px" 
+			  android:singleLine="true"
+			  android:textSize="18sp" 
+			  android:layout_x="151px" 
+			  android:layout_y="153px"
+			  android:inputType="textPassword">
+	</EditText>
+</AbsoluteLayout>
