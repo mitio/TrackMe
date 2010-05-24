@@ -1,6 +1,12 @@
+<%
+	@menu_items = [
+		{ :label => 'Users', :controller => 'users' },
+		{ :label => 'Tracks', :controller => 'tracks' },
+	]
+%>
 <ul class="menu">
-  <li><%= link_to "Users", :controller => :users %></li>
-  <li><%= link_to "Tracks", :controller => :tracks %></li>
-  <li>Some other menue items</li>
+	<% @menu_items.each do |menu| %>
+		<li class="<%= menu[:controller] == params[:controller] ? 'active' : '' %>"><%= link_to menu[:label], :controller => menu[:controller] %></li>
+	<% end %>
 </ul>
 <div class="clear"></div>

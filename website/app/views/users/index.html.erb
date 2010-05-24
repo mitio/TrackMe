@@ -1,1 +1,33 @@
-Users listing will come here.
+<h1>
+	Users
+	<!-- <div class="sorting">
+		Sort by:
+		<%= link_to 'Newest', :sort => 'date' %> |
+		<%= link_to 'Alphabetical', :sort => 'name' %>
+	</div> -->
+</h1>
+
+<% if @users %>
+
+	<div class="users-listing">
+		<% @users.each do |user| %>
+			<% link_to user_path(user, :page => params[:page]), :class => "user #{cycle :even, :odd}", :title => 'See full profile' do %>
+				<%= image_tag user.avatar_url(80), :alt => user.to_s, :class => 'avatar' %>
+				<div class="details">
+					<div class="profile-hint">View full profile &rarr;</div>
+					<div class="row name"><%= h user.to_s %></div>
+					<div class="row">Registered at <%= user.created_at %></div>
+					<div class="row">Tracks: <strong><%= user.tracks.public.size %></strong> public, <strong><%= user.tracks.size %></strong> total</div>
+				</div>
+				<div class="clear"></div>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= will_paginate @users %>
+
+<% else %>
+	<div class="filler">
+		There are no users yet.
+	</div>
+<% end %>

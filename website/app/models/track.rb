@@ -6,5 +6,7 @@ class Track < ActiveRecord::Base
   validates_inclusion_of :is_public, :in => [true, false]
   
   attr_accessible :name, :description, :is_public
+
+  named_scope :public, :conditions => { :is_public => true }
   
 end
