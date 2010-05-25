@@ -1,179 +1,312 @@
-body
-{
-  background-color: #775B30;
-  color: #333;
+body {
+	background-color: #775B30;
+	color: #333;
 }
 
-body, p, ol, ul, td
-{
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+body, p, ol, ul, td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size:	 13px;
+	line-height: 18px;
 }
 
-pre
-{
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+pre {
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
 }
 
-input
-{
-  background-color: #EFEFEF;
+input {
+	background-color: #EFEFEF;
 }
 
-a
-{
-  color: #000;
+a, a:visited {
+	color: #666;
+	text-shadow: none;
 }
-a:visited
-{
-  color: #666;
+
+h1 {
+	color: #775B30;
+	font-family: georgia, serif;
+	text-shadow: 0px 1px 0px #eee;
 }
-/*a:hover
-{
-  color: #FF9C00;
-  background-color:#925900;
+
+h1 a {
+	font-weight: normal;
+	font-size: 80%;
+}
+
+/*a:hover {
+	color: #FF9C00;
+	background-color:#925900;
 }*/
 
+
+/* form styles */
 .fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+	padding: 2px;
+	background-color: red;
+	display: table;
 }
 
 #errorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
 }
 
 #errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	background-color: #c00;
+	color: #fff;
 }
 
 #errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
+	color: #333;
+	margin-bottom: 0;
+	padding: 5px;
 }
 
 #errorExplanation ul li {
-  font-size: 12px;
-  list-style: square;
+	font-size: 12px;
+	list-style: square;
 }
 
-.notice
-{
-  color: green;
+.submit {
+	font-weight: bold;
+	color: #000;
 }
 
-.error
-{
-  color: red;
+form .section {
+	padding: 10px 0;
 }
 
-.clear
-{
-    clear: both;
-    display: block;
+
+.notice {
+	color: green;
 }
 
-.main
-{
-  width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  border: solid 5px #E0E0E0;
-  min-height: 500px; 
-  background-color: #F0D2A3;
+.error {
+	color: red;
 }
 
-.main_frame
-{
-  background-color: #E0E0E0;
-  padding: 5px;
+.clear {
+		clear: both;
+		display: block;
 }
 
-.content
-{
-  padding: 5px 10px;
-}
-ul.menu
-{
-  background-color: #F0D2A3;
-  margin: 0px;
-  padding: 0px;
-}
-ul.menu li
-{
-  float: left;
-  list-style: none;
-  margin-right: 5px;
-  background-color: #FF9C00;
-  padding: 3px 15px;
-}
-.header_box
-{
-  padding-top: 10px;
-  background-color: #FFC466;
-  min-height: 50px;
+.main {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid 5px #E0E0E0;
+	min-height: 500px; 
+	background-color: #F0D2A3;
+
+	box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
 }
 
-.header_box h1
-{
-  text-align: center;
-  color: #775B30;
+.main_frame {
+	background-color: #E0E0E0;
+	padding: 5px;
 }
 
-.header_box div
-{
-  margin-right: 10px; 
-  text-align: right;
+.content {
+	padding: 5px 10px 15px 10px;
 }
 
-textarea
-{
-  width: 600px;
-  height: 50px;
+
+/* main navigation menu */
+ul.menu {
+	background-color: #F0D2A3;
+	margin: 0 0 0 10px;
+	padding: 0px;
+}
+
+ul.menu li {
+	float: left;
+	list-style: none;
+	margin-right: 5px;
+}
+
+ul.menu li a {
+	float: left;
+	padding: 4px 13px;
+	margin: 4px 4px 0 4px;
+	background-color: #FF9C00;
+}
+
+ul.menu li.active a {
+	background-color: #F0D2A3;
+	padding: 8px 17px 4px 17px;
+	margin: 0;
+}
+
+
+
+.header_box {
+	padding-top: 10px;
+	background-color: #FFC466;
+	min-height: 50px;
+}
+
+.header_box h1 {
+	font-family: verdana, sans-serif;
+	text-align: center;
+	color: #775B30;
+}
+
+.header_box div {
+	margin-right: 10px; 
+	text-align: right;
+}
+
+textarea {
+	width: 400px;
+	height: 100px;
+}
+
+fieldset {
+	padding: 10px 20px 20px 20px;
+	margin: 10px 0;
+	border: 1px dotted #C38746;
+	background-color: #FDEECA;
+}
+
+fieldset legend {
+	font-weight: bold;
+}
+
+fieldset legend a {
+	font-weight: normal;
 }
 
 
 /* list table styles */
-
-table.list
-{
-  /*border: 1px solid #000;*/
-  border-collapse: collapse;
+table.list {
+	/*border: 1px solid #000;*/
+	border-collapse: collapse;
 }
 
-table.list td
-{
-  padding-left: 5px;
+table.list td {
+	padding-left: 5px;
 }
 
-table.list thead
-{
-  font-weight: bold;
+table.list thead {
+	font-weight: bold;
 }
 
-table.list tr.even
-{
-  background-color: #FFC466;
+table.list tr.even {
+	background-color: #FFC466;
 }
 
-table.list tr.odd
-{
-  background-color: #F0D2A3;
+table.list tr.odd {
+	background-color: #F0D2A3;
 }
-/* END list table styles */
+
+
+/* labels */
+.labels td,
+.labels th {
+	padding: 4px 6px;
+}
+
+.labels th {
+	font-weight: normal;
+	color: #555;
+	vertical-align: top;
+	text-align: right;
+}
+
+.labels td {
+	color: #000;
+	vertical-align: top;
+	text-align: left;
+}
+
+
+.filler {
+	text-align: center;
+	padding: 60px;
+	font-style: italic;
+	font-size: 14px;
+	color: #775B30;
+}
+
+.small-filler {
+	font-style: italic;
+	color: #775B30;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+/* users */
+.users .user .avatar {
+	float: right;
+	text-align: center;
+}
+
+.users .user .avatar a {
+	text-decoration: none;
+}
+
+.users-listing a.user {
+	display: block;
+	padding: 10px;
+	border-bottom: 1px dotted #888;
+	margin-bottom: 10px;
+	text-decoration: none;
+}
+
+.users-listing .user .avatar {
+	float: left;
+}
+
+.users-listing .user .details {
+	margin-left: 100px;
+}
+
+.users-listing .user .details .profile-hint {
+	float: right;
+	font-style: italic;
+	color: #DEC399;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+.users-listing .user.even {
+	background-color: #FDEECA;
+}
+
+.users-listing .user.odd {
+	background-color: #FFF6DE;
+}
+
+.users-listing .user .details .name {
+	font-weight: bold;
+	color: #444;
+	padding-top: 10px;
+}
+
+.users-listing .user .details .row {
+	padding-bottom: 4px;
+}
+
+.users-listing .user:hover {
+	background-color: #fff;
+}
+
+.users-listing .user:hover .details .profile-hint {
+	color: #666;
+}
+
+
+
+
+

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508200858) do
+ActiveRecord::Schema.define(:version => 20100524144228) do
 
   create_table "coordinates", :force => true do |t|
     t.integer  "track_id"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20100508200858) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
+    t.string   "name",                      :limit => 100, :default => "",    :null => false
+    t.boolean  "is_public",                                :default => true,  :null => false
+    t.boolean  "show_email",                               :default => false, :null => false
+    t.text     "about",                                    :default => "",    :null => false
   end
+
+  add_index "users", ["is_public", "created_at"], :name => "index_users_on_is_public_and_created_at"
+  add_index "users", ["is_public", "name"], :name => "index_users_on_is_public_and_name"
 
 end

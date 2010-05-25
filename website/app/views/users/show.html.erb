@@ -1,0 +1,53 @@
+<div class="user">
+	<% unless @user.public? %>
+		<div><em>Your profile is not public. You are viewing it as a profile owner. Go into edit mode if you wish to change that.</em></div>
+	<% end %>
+
+	<h1>
+		<%= @user.to_s %>
+		<%= link_to '(edit profile)', edit_user_path(@user) if @user == current_user %>
+	</h1>
+
+	<fieldset>
+		<legend>
+			General
+			<%= link_to '(edit)', edit_user_path(@user, :anchor => 'edit-user-form') if @user == current_user %>
+		</legend>
+		<div class="avatar">
+			<% if @user == current_user %>
+				<% link_to 'http://www.gravatar.com', :target => '_blank' do %>
+					<%= @user.avatar_tag %><br />
+					Click to edit
+				<% end %>
+			<% else %>
+				<%= @user.avatar_tag %>
+			<% end %>
+		</div>
+
+		<% labels do %>
+			<% label_row 'E-mail:' do %>
+				<%= @user.show_email ? auto_link(h(@user.email)) : '<span class="small-filler">not shared</span>' %>
+			<% end %>
+			<%= label_row 'Name:', h(@user.name) %>
+			<%= label_row 'Nickname:', h(@user.login) %>
+			<%= label_row 'Registered at:', @user.created_at %>
+			<% label_row 'Tracks' do %>
+				<strong><%= @user.tracks.public.size %></strong> public, <strong><%= @user.tracks.size %></strong> total
+			<% end %>
+		<% end %>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			About
+			<%= link_to '(edit)', edit_user_path(@user, :anchor => 'about') if @user == current_user %>
+		</legend>
+		<% unless @user.about.blank? %>
+			<div><%= auto_link(simple_format(h(@user.about))) %></div>
+		<% else %>
+			<div class="small-filler">This user has not provided any detailed information yet.</div>
+		<% end %>
+	</fieldset>
+
+	<%= link_to '&larr; Back to Users', users_path(:page => params[:page]) %>
+</div>

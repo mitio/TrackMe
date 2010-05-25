@@ -11,14 +11,14 @@
 	<%= stylesheet_link_tag 'default' %>
 	<%= javascript_include_tag :defaults %>
 </head>
-<body>
+<body class="<%= h params[:controller] %> action-<%= h params[:action] %>">
 	<div class="main">
 		
 		<div class="header_box">
-			<h1>Track Me</h1>
+			<%= link_to '<h1>Track Me</h1>', root_path %>
 			<div>
 				<% if current_user %>
-					Welcome, <%= h current_user.to_s %>
+					Welcome, <%= link_to h(current_user.to_s), user_path(current_user) %> |
 					<%= link_to 'Logout', logout_path %>
 				<% else %>
 					<%= link_to 'Sign-up now!', signup_path %> |
