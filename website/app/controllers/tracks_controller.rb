@@ -20,6 +20,9 @@ class TracksController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @track }
+      format.json do
+        render :json => @track.points 
+      end
     end
   end
 

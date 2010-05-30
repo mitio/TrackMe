@@ -306,7 +306,10 @@ table.list tr.odd {
 	color: #666;
 }
 
-
+.map_div {
+  width: 80%; 
+  height: 60%;
+}
 
 
 

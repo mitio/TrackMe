@@ -77,4 +77,31 @@ class TracksControllerTest < ActionController::TestCase
     end
     assert_redirected_to tracks_path
   end
+
+  test "should get the coordiantes of the track in json format" do 
+    login_as :quentin
+
+    get :show, :format => "json", :id => tracks(:one).to_param
+
+    assert_response :success
+
+    assert_equal "[[9.99,9.99],[9.99,9.99]]", @response.body
+  end
+  
+  test "should not be able get the coordiantes if not logged in" do
+    get :show, :format => "json", :id => tracks(:one).to_param
+
+    assert_response 401
+  end
+
+  test "should show a map in the track" do
+    login_as :quentin
+     
+    get :show, :id => tracks(:one).to_param
+    
+    assert_response :success
+  
+    assert_not_equal nil, @response.body.index("load_track(1)")
+    assert_not_equal nil, @response.body.index('div id="map_1"')
+  end
 end

@@ -13,6 +13,8 @@
 <% if all_coordinates.empty? %>
 	<p>There are no coordinates for this track yet.</p>
 <% else %>
+        <%= render :partial => "map_form", :locals => {:track => @track} %>
+
 	<table class="list">
 		<thead>
 			<tr>
