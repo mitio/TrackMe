@@ -10,6 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   map.login   '/login', :controller => 'sessions', :action => 'new'
   map.logout  '/logout', :controller => 'sessions', :action => 'destroy'
 
+  map.user_tracks '/users/:user_id/tracks/', :controller => 'tracks', :action => 'user_tracks'
+  map.user_track  '/users/:user_id/tracks/:track_id', :controller => 'tracks', :action => 'user_track'
+
   map.root :controller => 'home'
   
   # map.connect 'api/:action', :controller => 'api', :conditions => { :method => :post }

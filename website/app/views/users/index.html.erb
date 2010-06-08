@@ -17,7 +17,8 @@
 					<div class="profile-hint">View full profile &rarr;</div>
 					<div class="row name"><%= h user.to_s %></div>
 					<div class="row">Registered at <%= user.created_at %></div>
-					<div class="row">Tracks: <strong><%= user.tracks.public.size %></strong> public, <strong><%= user.tracks.size %></strong> total</div>
+					<div class="row">
+						Tracks: <strong><%= user.tracks.public.size %></strong> public, <strong><%= user.tracks.size %></strong> total</div>
 				</div>
 				<div class="clear"></div>
 			<% end %>

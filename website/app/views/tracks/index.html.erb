@@ -1,27 +1,41 @@
-<h1>Listing tracks</h1>
+<% if @only_public %>
+	<h1>Public tracks for <%= link_to h(@user.to_s), user_path(@user) %></h1>
+<% else %>
+	<h1>Listing tracks</h1>
+<% end %>
 
 <table class="list">
 	<thead>
 	<tr>
 		<td>Name</td>
 		<td>Public?</td>
-		<td colspan="3"/>
+		<td></td>
 	</tr>
 	</thead>
 	
 	<tbody>
 		<% @tracks.each do |track| %>
-			<tr class='<%= cycle(:even, :odd) %>'>
+			<tr class="<%= cycle(:even, :odd) %>">
 				<td><%= track.name %></td>
-				<td><%= track.is_public ? "yes" : "no" %>
-				<td><%= link_to 'Show', track %>
-				<%= link_to 'Edit', edit_track_path(track) %>
-				<%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+				<td><%= track.is_public ? "yes" : "no" %></td>
+				<td>
+					<% if @only_public %>
+						<%= link_to 'Show', user_track_path(@user, track) %>
+					<% else %>
+						<%= link_to 'Show', track %>
+					<% end %>
+
+					<% if @user == current_user %>
+						<%= link_to 'Edit', edit_track_path(track) %>
+						<%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %>
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<br />
-
-<%= link_to 'New track', new_track_path %>
+<% if @user == current_user %>
+	<br />
+	<%= link_to 'New track', new_track_path %>
+<% end %>

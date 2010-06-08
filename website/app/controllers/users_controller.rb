@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+  # public users' listing
   def index
-    # public users' listing
     @users = User.public.paginate :page => params[:page], :per_page => 10, :order => (params[:sort] == 'name' ? 'name ASC' : 'created_at DESC')
   end
 
+  # show a user's profile to anyone, if the profile is publicly accessible, or to the user himself, if not
   def show
     @user = User.find params[:id]
     unless @user.public? || @user == current_user
@@ -11,10 +12,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # editing current user's profile
   def edit
     @user = current_user
   end
 
+  # update the current user's profile
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
@@ -25,10 +28,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # the signup page
   def new
-    # the signup page
   end
 
+  # the actual signup logic resides here
   def create
     cookies.delete :auth_token
     # protects against session fixation attacks, wreaks havoc with 

@@ -1,15 +1,33 @@
 class TracksController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => [:user_tracks, :user_track]
 
   # GET /tracks
   # GET /tracks.xml
   def index
     @tracks = current_user.tracks
+    @user = current_user
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tracks }
     end
+  end
+
+  # show all public tracks for the given user
+  # GET /users/1/tracks
+  def user_tracks
+    @only_public = true
+    @user = User.find params[:user_id]
+    @tracks = @user.tracks.public
+    render :action => 'index'
+  end
+
+  # show a public track for the given user
+  # GET /users/1/tracks/12
+  def user_track
+    @user = User.find params[:user_id]
+    @track = Track.public.find params[:track_id], :conditions => { :user_id => @user.id }
+    render :action => 'show'
   end
 
   # GET /tracks/1

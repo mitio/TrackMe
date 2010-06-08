@@ -32,7 +32,8 @@
 			<%= label_row 'Nickname:', h(@user.login) %>
 			<%= label_row 'Registered at:', @user.created_at %>
 			<% label_row 'Tracks' do %>
-				<strong><%= @user.tracks.public.size %></strong> public, <strong><%= @user.tracks.size %></strong> total
+				<% link_to user_tracks_path(@user) do %><strong><%= @user.tracks.public.size %></strong> public (view)<% end %>,
+				<strong><%= @user.tracks.size %></strong> total
 			<% end %>
 		<% end %>
 	</fieldset>
