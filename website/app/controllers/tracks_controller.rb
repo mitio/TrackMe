@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_filter :login_required, :except => [:user_tracks, :user_track]
+  before_filter :login_required, :except => [:user_tracks, :user_track, :show]
 
   # GET /tracks
   # GET /tracks.xml
@@ -33,7 +33,8 @@ class TracksController < ApplicationController
   # GET /tracks/1
   # GET /tracks/1.xml
   def show
-    @track = Track.find(params[:id], :conditions => { :user_id => current_user.id })
+    @track = Track.find params[:id]
+    raise ActiveRecord::RecordNotFound unless current_user == @track.user || @track.is_public
 
     respond_to do |format|
       format.html # show.html.erb
