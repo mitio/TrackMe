@@ -9,13 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100524144228) do
+ActiveRecord::Schema.define(:version => 20100620164935) do
 
   create_table "coordinates", :force => true do |t|
     t.integer  "track_id"
     t.decimal  "lat",        :precision => 9, :scale => 6
     t.decimal  "lng",        :precision => 9, :scale => 6
     t.datetime "tracked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.boolean  "is_approved", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

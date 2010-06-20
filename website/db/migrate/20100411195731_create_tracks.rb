@@ -1,7 +1,6 @@
 class CreateTracks < ActiveRecord::Migration
   def self.up
     create_table :tracks do |t|
-      t.intteger :user
       t.string :name
       t.text :description
       t.boolean :is_public, :null => false

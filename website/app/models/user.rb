@@ -5,6 +5,27 @@ class User < ActiveRecord::Base
   include ERB::Util # for the h() helper
 
   has_many :tracks
+                          
+  has_many :relations_to,
+            :foreign_key => 'user_id',
+            :class_name => 'Friendship'
+  has_many :relations_from,
+            :foreign_key => 'friend_id',
+            :class_name => 'Friendship'                             
+
+  #has_many :linked_to,
+  # :through => :relations_to,   :source => :friend
+  
+  has_many :friends,
+            :through => :relations_to,
+            :source => :friend,
+            :conditions => { :friendships => { :is_approved => true } }
+
+  has_many :friend_requests,
+            :through => :relations_to,
+            :source => :friend,
+            :conditions => { :friendships => { :is_approved => false } }
+
 
   attr_accessor :password # virtual attribute for the unencrypted password
 

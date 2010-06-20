@@ -5,6 +5,10 @@ class CoordinateTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end
+
+  def test_another
+    assert true
+  end
   
   test "coodrinates from example" do
     a = Coordinate.new :lat => 50.11222, :lng => 8.68194
