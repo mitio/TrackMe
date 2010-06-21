@@ -1,5 +1,6 @@
 // initializes a google map component in the container 
 // with ID of "map_<track_id>", where <track_id> is the ID of the tracks
+
 function load_google_map(points, track_id) {
 	if (!points || !points.length || !track_id) {
 		return;
@@ -37,9 +38,28 @@ function load_google_map(points, track_id) {
 	return a;
 }
 
+var lastPoints;
+
 // loads the coordinates for the given track and calls load_google_map() to display the map for them
-function load_track(track_id) {
+function load_track(track_id, refresh) {
 	$.getJSON("/tracks/" + track_id + ".json", function(points) {
-		load_google_map(points, track_id);
+
+            refresh = refresh || false;
+            
+            if (!refresh || (lastPoints.toString() != points.toString()))
+            {
+              load_google_map(points, track_id);
+
+              lastPoints = points;
+            }
+
+
 	});
+
+        if (!refresh)
+        {
+          $(".map_div").everyTime(10000,function(i) {
+                    load_track(track_id, true); 
+              });
+        }
 }
