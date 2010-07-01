@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   # show a user's profile to anyone, if the profile is publicly accessible, or to the user himself, if not
   def show
     @user = User.find params[:id]
-    unless @user.public? || @user == current_user
-      raise ActiveRecord::RecordNotFound 
+    raise ActiveRecord::RecordNotFound unless @user.public? || @user == current_user
+    if logged_in?
+      @friendship_status = Friendship.check_status current_user.id, @user.id
     end
   end
 

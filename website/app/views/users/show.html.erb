@@ -7,18 +7,18 @@
 		<%= @user.to_s %>
 		<%= link_to '(edit profile)', edit_user_path(@user) if @user == current_user %>
 	</h1>
-	
-	
-	<% unless @user == current_user or
-		current_user.friends.first :conditions => {:id => @user.id} or 
-		@user.friend_requests.first :conditions => {:id => current_user.id} %>
+
+	<% if logged_in? && @friendship_status != :idenical %>
 		<div>
-			<%= link_to 'Request Friendship',
-				user_friendship_request_path(:user_id => @user.id),
-				:method => :post  %>
+			<% if @friendship_status == :none %>
+				<%= link_to 'Request Friendship', user_friendship_request_path(:user_id => @user.id), :method => :post %>
+			<% elsif @friendship_status == :requested %>
+				You have sent a friend request to this user. <%= link_to 'Go to friendships &rarr;', :controller => 'friendships' %>
+			<% elsif @friendship_status == :friends %>
+				You are friends with this user. <%= link_to 'Go to friendships &rarr;', :controller => 'friendships' %>
+			<% end %>
 		</div>
 	<% end %>
-	
 
 	<fieldset>
 		<legend>
