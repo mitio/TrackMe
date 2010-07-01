@@ -4,8 +4,9 @@ class TracksControllerTest < ActionController::TestCase
   test "should redirect to login" do
     get :index
     assert_redirected_to new_session_path
-    get :show, :id => tracks(:one).to_param
-    assert_redirected_to new_session_path
+    assert_raise ActiveRecord::RecordNotFound do 
+      get :show, :id => tracks(:one).to_param
+    end
     get :new
     assert_redirected_to new_session_path
     get :edit, :id => tracks(:one).to_param
@@ -89,14 +90,14 @@ class TracksControllerTest < ActionController::TestCase
   end
   
   test "should not be able get the coordiantes if not logged in" do
-    get :show, :format => "json", :id => tracks(:one).to_param
-
-    assert_response 401
+    assert_raise  ActiveRecord::RecordNotFound do 
+      get :show, :format => "json", :id => tracks(:one).to_param
+    end
   end
 
   test "should show a map in the track" do
     login_as :quentin
-     
+  
     get :show, :id => tracks(:one).to_param
     
     assert_response :success
