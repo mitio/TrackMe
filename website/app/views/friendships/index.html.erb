@@ -1,0 +1,38 @@
+<% if @friend_requests.count > 0 %>
+    <fieldset class="friend-requests">
+        <legend>Friend requests</legend>
+        <ul>
+        <% @friend_requests.each do |fr| %> 
+             <li>
+                <%= link_to fr.login, user_path(fr) %>
+                <%= link_to 'Approve',
+                    { :controller => :friendships, :action => :approve, :id => fr.id},
+                    :class => 'approve', :method => :post %>
+                <%= link_to 'Reject',
+                    { :controller => :friendships, :action => :reject, :id => fr.id},
+                    :class => 'reject', :method => :delete %>
+             </li>
+        <% end %>
+        </ul>
+    </fieldset>
+<% end %>
+
+
+<fieldset class="friend-requests">
+    <legend>Friends</legend>
+    <% if @friends.count > 0 %>
+        <ul>
+        <% @friends.each do |fr| %> 
+             <li>
+                <%= link_to fr.login, user_path(fr) %>
+                
+                <%= link_to 'Remove friend',
+                    { :controller => :friendships, :action => :reject, :id => fr.id},
+                    :class => 'reject', :method => :delete %>
+             </li>         
+        <% end %>
+        </ul>
+    <% else %>
+        No friends, yet
+    <% end %>
+</fieldset>
