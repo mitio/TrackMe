@@ -317,9 +317,9 @@ table.list tr.odd th {
 
 a.approve,
 a.reject {
-  font-weight: bold;
-  text-decoration: none;
-  margin-left: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-right: 10px;
 }
 
 a.approve:hover,
