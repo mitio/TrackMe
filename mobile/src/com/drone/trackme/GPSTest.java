@@ -13,12 +13,24 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ * Represents a custom GPS LocationListener.  
+ *
+ * @author martin.mitev
+ */
 public class GPSTest extends Object implements LocationListener
 {
 	private LocationManager lm;
 	private double latitude;
 	private double longitude;
 	
+	/**
+	 * Represents Constructor of GPSTest class .
+	 *
+	 * @author martin.mitev
+	 * @param context ...............
+	 * @see Context
+	 */
 	public GPSTest(Context context)
 	{
 		lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
@@ -26,6 +38,13 @@ public class GPSTest extends Object implements LocationListener
 		
 	}
 	
+	/**
+	 * Represents a method that collects GPS coordinates .
+	 *
+	 * @author martin.mitev
+	 * @return .................
+	 * @see NameValuePair
+	 */
      public List<NameValuePair> GetLocationCoordinates()
      {  
     	 try
@@ -35,8 +54,8 @@ public class GPSTest extends Object implements LocationListener
     	 }
     	 catch(Exception ex)
     	 {
-    		 this.latitude++;
-    		 this.longitude++;
+    		 //this.latitude++;
+    		 //this.longitude++;
     	 }
     	 List<NameValuePair> coords = new ArrayList<NameValuePair>(2);    	 
     	 
@@ -47,6 +66,13 @@ public class GPSTest extends Object implements LocationListener
      
      
 	@Override
+	/**
+	 * Represents  .
+	 *
+	 * @author martin.mitev
+	 * @param location .................
+	 * @see Location
+	 */
 	public void onLocationChanged(Location location)
 	{	
 		this.latitude = location.getLatitude();
@@ -54,18 +80,39 @@ public class GPSTest extends Object implements LocationListener
 	}
 
 	@Override
+	/**
+	 * Represents ....................... .
+	 *
+	 * @author martin.mitev
+	 * @param provider .................
+	 */
 	public void onProviderDisabled(String provider)
 	{
 		 Log.e("GPS", "provider disabled " + provider);		
 	}
 
 	@Override
+	/**
+	 * Represents ....................... .
+	 *
+	 * @author martin.mitev
+	 * @param provider .................
+	 */
 	public void onProviderEnabled(String provider)
 	{
 		Log.e("GPS", "provider enabled " + provider);		
 	}
 
 	@Override
+	/**
+	 * Represents ....................... .
+	 *
+	 * @author martin.mitev
+	 * @param provider .................
+	 * @param status ...............
+	 * @param extras ............
+	 * @see Bundle
+	 */
 	public void onStatusChanged(String provider, int status, Bundle extras)
 	{
 		Log.e("GPS", "status changed to " + provider + " [" + status + "]");	

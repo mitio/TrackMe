@@ -1,12 +1,11 @@
 package com.drone.trackme.service;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
@@ -19,26 +18,44 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.drone.trackme.Constants;
 import com.drone.trackme.GPSTest;
-import com.drone.trackme.MainActivity;
 import com.drone.trackme.TrackMeApplication;
+import com.drone.trackme.db.DBHelper;
+import com.drone.trackme.db.TrackedCoordinates;
 
+import android.R.integer;
 import android.app.Service;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Handler;
 import android.os.IBinder;
 
+/**
+ * Represents the service which is used to get continuously GPS coordinates  .  
+ *
+ * @author martin.mitev
+ */
 public class MainService extends Service
 {
 	private Handler serviceHandler = null;
 	private GPSTest gpsTest;
 	private RunTask runTask;
+	private DBHelper dbHelper;
+	private Boolean isThereAnyCoordinatesToSend;
 	
 	@Override
+	/**
+	 * Represents a method that starts the service which gets and sends current GPS coordinates .
+	 *
+	 * @author martin.mitev
+	 * @param intent ...............
+	 * @param startId ...................
+	 * @see Intent
+	 */
 	public void onStart(Intent intent, int startId)
 	{
 		super.onStart(intent, startId);
 		gpsTest = new GPSTest(getApplicationContext());
+		dbHelper = new DBHelper(getApplicationContext());
+		isThereAnyCoordinatesToSend = false;
 		 
 		this.serviceHandler = new Handler();
 		// if you want certain task to be done periodically define a task and call it this way
@@ -47,6 +64,14 @@ public class MainService extends Service
 	}
 	
 	@Override
+	/**
+	 * Represents ....................... .
+	 *
+	 * @author martin.mitev
+	 * @param intent ...............
+	 * @return ..................
+	 * @see Intent
+	 */
 	public IBinder onBind( Intent intent )
 	{
 	    //return binder;
@@ -54,13 +79,11 @@ public class MainService extends Service
 		return null;
 	}
 	
-	@Override
 	public void onCreate() 
 	{
 		super.onCreate();		
 	}
 	
-	@Override
 	public void onDestroy() 
 	{
 		super.onDestroy();
@@ -77,11 +100,45 @@ public class MainService extends Service
 			
 			String latitude = coords.get(0).getValue();
 			String longitude = coords.get(1).getValue();
-			
 			app.setLatitude(latitude);
-			app.setLongitude(longitude);	
+			app.setLongitude(longitude);
 			
-			// SendCoordsToServer(coords);
+			Calendar currentDate = Calendar.getInstance();
+			//SimpleDateFormat simpelDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+			SimpleDateFormat simpelDateFormat = new SimpleDateFormat("yyyy-MM-dd HH::mm:ss");
+			String currentDateTime = simpelDateFormat.format(currentDate.getTime());
+			
+			List<NameValuePair> coordsToSend = new ArrayList<NameValuePair>(4);
+			coordsToSend.add(new BasicNameValuePair("session_id", app.getSessionID()));
+				
+			
+			if(app.getIsInOnlineMode())
+			{		
+				if(isThereAnyCoordinatesToSend)
+				{
+					List<TrackedCoordinates> allTrackedCoordinates = dbHelper.selectAll();
+					for (TrackedCoordinates trackedCoordinates : allTrackedCoordinates)
+					{
+						coordsToSend.add( new BasicNameValuePair("track_id", trackedCoordinates.getTrackID().toString()));
+						coordsToSend.add( new BasicNameValuePair("coord", trackedCoordinates.CreateSendingString()));
+						SendCoordsToServer(coordsToSend);
+					}
+					dbHelper.deleteAll();
+					isThereAnyCoordinatesToSend = false;				
+				}
+				
+				coordsToSend.add(new BasicNameValuePair("track_id", app.getTrackID()));
+				coordsToSend.add(new BasicNameValuePair("coord", latitude.concat("|").concat(longitude).
+						concat("|").concat(currentDateTime)));
+				SendCoordsToServer(coordsToSend);
+			}
+			else
+			{
+				TrackedCoordinates trackedCoordinates = new TrackedCoordinates(Integer.parseInt(app.getTrackID()), 
+						Double.parseDouble(latitude), Double.parseDouble(longitude), currentDateTime);	
+				SendCoordsToDB(trackedCoordinates);
+				isThereAnyCoordinatesToSend = true;
+			}			
 		}
 		
 		private void SendCoordsToServer(List<NameValuePair> coords)
@@ -104,15 +161,27 @@ public class MainService extends Service
 			 } 
 			 catch (IOException e) 
 			 {  
-			 	// handle exception
+				 // handle exception
 			 }
 		}
 
+		private void SendCoordsToDB(TrackedCoordinates trackedCoordinates)
+		{
+			try
+			{
+				dbHelper.insert(trackedCoordinates);	
+			}
+			catch(Exception e)
+			{	
+				// handle exception
+			}
+		}
+		
 		public void run() 
 		{			
 			doServiceWork();
-			// to have the service task run after 2 seconds periodically
-			serviceHandler.postDelayed( this, 2000L );
+			// to have the service task run after 300*2 seconds periodically
+			serviceHandler.postDelayed(this, 10000 );
 		}
 	}
 }

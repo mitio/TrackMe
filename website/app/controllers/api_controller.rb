@@ -52,7 +52,6 @@ class ApiController < ApplicationController
     unless params[:coord].blank?
       [params[:coord]].flatten.each do |coord_params|
         lat, lng, tracked_at = coord_params.split '|'
-        # TODO: convert tracked_at from string to datetime
         coordinate = Coordinate.new :lat => lat, :lng => lng, :tracked_at => tracked_at
         coordinate.tracked_at ||= Time.now
         @track.coordinates << coordinate

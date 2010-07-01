@@ -7,9 +7,20 @@
 			android:layout_width="100px"
 			android:layout_height="50px" 
 			android:text="@string/login" 
-			android:layout_x="50px"
+			android:layout_x="110px"
 			android:layout_y="249px">
 	</Button>
+	<TextView android:id="@+id/txvErrorMessage" 
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" 
+			  android:text="@string/errormessage"
+			  android:textStyle="bold|italic"
+			  android:textColor="#FF0000"
+			  android:layout_x="47px" 
+			  android:layout_y="220px"
+			  >
+	</TextView>
+	
 	<EditText android:id="@+id/edtUserName" android:layout_width="120px" android:layout_height="50px" android:singleLine="true" android:textSize="18sp" android:layout_x="152px" android:layout_y="71px">
 	</EditText>
 	<TextView android:id="@+id/txvUserName" 
