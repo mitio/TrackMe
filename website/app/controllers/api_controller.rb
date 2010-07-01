@@ -52,6 +52,11 @@ class ApiController < ApplicationController
     unless params[:coord].blank?
       [params[:coord]].flatten.each do |coord_params|
         lat, lng, tracked_at = coord_params.split '|'
+
+        #make sure we do not receive (0,0)s
+        #the device sometimes sends buggy coordinates
+        next if (lat.to_i == 0) and (lng.to_i == 0)
+
         # TODO: convert tracked_at from string to datetime
         coordinate = Coordinate.new :lat => lat, :lng => lng, :tracked_at => tracked_at
         coordinate.tracked_at ||= Time.now
