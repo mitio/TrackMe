@@ -12,7 +12,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.user_tracks '/users/:user_id/tracks/', :controller => 'tracks', :action => 'user_tracks'
   map.user_track  '/users/:user_id/tracks/:track_id', :controller => 'tracks', :action => 'user_track'
-
+  
+  map.user_friendship_request '/friendship/:user_id/friendship_request', :controller => 'friendships', :action => 'friendship_request', :conditions => { :method => :post }
+  
   map.root :controller => 'home'
   
   # map.connect 'api/:action', :controller => 'api', :conditions => { :method => :post }

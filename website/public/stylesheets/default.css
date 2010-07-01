@@ -315,5 +315,27 @@ table.list tr.odd th {
 	margin: 10px 0;
 }
 
+.approve, .reject
+{
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+
+.approve:hover, .reject:hover
+{
+  text-decoration: underline;
+}
+
+.approve
+{
+  color: green; 
+}
+
+.reject
+{
+  color: red;
+}
 
 
