@@ -39,7 +39,8 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 
-  Mime::Type.register "text/plain", :dashboard 
+  # rails 2.3 only
+  # Mime::Type.register "text/plain", :dashboard
 end
 
 require "will_paginate"

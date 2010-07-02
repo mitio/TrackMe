@@ -52,7 +52,7 @@
 	<script type="text/javascript">
 		$(document).bind('new_coordinates_arrived', function () {
 			alert
-			$('#coordinates-and-dashboard-wrapper').load(<%= url_for(:format => 'dashboard').to_s.to_json %>);
+			$('#coordinates-and-dashboard-wrapper').load(<%= url_for(:format => 'text').to_s.to_json %>);
 		});
 	</script>
 <% end %>

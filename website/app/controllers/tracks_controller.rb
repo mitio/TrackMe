@@ -39,7 +39,7 @@ class TracksController < ApplicationController
     @track              = (@friends_with_user ? Track : Track.public).find params[:track_id], :conditions => { :user_id => @user.id }
     respond_to do |format|
       format.html { render :action => 'show' }
-      format.dashboard { render :partial => 'track_dashboard.html', :layout => false }
+      format.text { render :partial => 'track_dashboard.html', :layout => false }
     end
   end
 
@@ -53,7 +53,7 @@ class TracksController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @track }
       format.json { render :json => @track.points }
-      format.dashboard { render :partial => 'track_dashboard.html', :layout => false }
+      format.text { render :partial => 'track_dashboard.html', :layout => false }
     end
   end
 
