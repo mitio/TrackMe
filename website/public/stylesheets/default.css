@@ -138,6 +138,7 @@ ul.menu li {
 }
 
 ul.menu li a {
+	text-decoration: none;
 	float: left;
 	padding: 4px 13px;
 	margin: 4px 4px 0 4px;
@@ -145,6 +146,8 @@ ul.menu li a {
 }
 
 ul.menu li.active a {
+	font-weight: bold;
+	color: #222;
 	background-color: #F0D2A3;
 	padding: 8px 17px 4px 17px;
 	margin: 0;
@@ -194,10 +197,12 @@ fieldset legend a {
 table.list {
 	/*border: 1px solid #000;*/
 	border-collapse: collapse;
+	margin: 5px 0 10px 0;
 }
 
-table.list td {
-	padding-left: 5px;
+table.list td,
+table.list th {
+	padding: 1px 10px;
 }
 
 table.list thead {

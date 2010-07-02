@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.public_tracks   '/tracks/public', :controller => 'tracks', :action => 'public_tracks'
 
   # resources
   map.resources :tracks

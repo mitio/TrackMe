@@ -1,13 +1,15 @@
 <%
 	@menu_items = [
 		{ :label => 'Users', :controller => 'users' },
-		{ :label => 'Tracks', :controller => 'tracks' },
-		{ :label => 'Friendships', :controller => 'friendships' }
+		{ :label => 'Public Tracks', :controller => 'tracks', :action => 'public_tracks' },
+		{ :label => 'My Tracks', :controller => 'tracks', :action => 'index' },
+		{ :label => 'My Friendships', :controller => 'friendships' },
 	]
 %>
 <ul class="menu">
 	<% @menu_items.each do |menu| %>
-		<li class="<%= menu[:controller] == params[:controller] ? 'active' : '' %>"><%= link_to menu[:label], :controller => menu[:controller] %></li>
+		<% is_active = menu[:controller] == params[:controller] && (menu[:action].blank? || menu[:action] == params[:action]) %>
+		<li class="<%= is_active ? 'active' : '' %>"><%= link_to menu[:label], menu.except(:label) %></li>
 	<% end %>
 </ul>
 <div class="clear"></div>

@@ -1,7 +1,7 @@
 <% if @only_public %>
 	<h1>Public tracks for <%= link_to h(@user.to_s), user_path(@user) %></h1>
 <% else %>
-	<h1>Listing tracks</h1>
+	<h1>Listing <%= @all_public_tracks ? 'public' : '' %> tracks</h1>
 <% end %>
 
 <table class="list">
@@ -19,13 +19,13 @@
 				<td><%= track.name %></td>
 				<td><%= track.is_public ? "yes" : "no" %></td>
 				<td>
-					<% if @only_public %>
-						<%= link_to 'Show', user_track_path(@user, track) %>
+					<% if @only_public || @some_public_tracks %>
+						<%= link_to 'Show', user_track_path(track.user, track) %>
 					<% else %>
 						<%= link_to 'Show', track %>
 					<% end %>
 
-					<% if @user == current_user %>
+					<% if logged_in? && track.user == current_user %>
 						<%= link_to 'Edit', edit_track_path(track) %>
 						<%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %>
 					<% end %>
@@ -35,7 +35,7 @@
 	</tbody>
 </table>
 
-<% if @user == current_user %>
+<% if logged_in? && !@all_public_tracks && !@some_public_tracks %>
 	<br />
 	<%= link_to 'New track', new_track_path %>
 <% end %>

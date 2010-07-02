@@ -45,7 +45,13 @@
 			<%= label_row 'Registered at:', @user.created_at %>
 			<% label_row 'Tracks' do %>
 				<% link_to user_tracks_path(@user) do %><strong><%= @user.tracks.public.size %></strong> public (view)<% end %>,
-				<strong><%= @user.tracks.size %></strong> total
+				<% if logged_in? && Friendship.check_status(current_user.id, @user.id) == :friends %>
+					<% link_to user_tracks_path(@user) do %>
+						<strong><%= @user.tracks.size %></strong> total (view)
+					<% end %>
+				<% else %>
+					<strong><%= @user.tracks.size %></strong> total
+				<% end %>
 			<% end %>
 		<% end %>
 	</fieldset>

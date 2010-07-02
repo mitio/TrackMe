@@ -20,7 +20,7 @@ function load_google_map(points, trackId) {
 	var myOptions = {
 		zoom: 1,
 		center: myLatLng,
-		scrollWheel: false,
+		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	};
 

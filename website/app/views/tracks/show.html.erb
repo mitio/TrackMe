@@ -49,13 +49,13 @@
 			<% end %>
 		</tbody>
 	</table>
-	<div>
-		Total dist: <%= format "%.2f", total_dist %> km<br />
-		Average speed: <%= format "%.2f", all_coordinates.first.speed(all_coordinates.last, total_dist) %> km/h
+	<div style="margin: 10px 0;">
+		Total dist: <strong><%= format "%.2f", total_dist %></strong> km<br />
+		Average speed: <strong><%= format "%.2f", all_coordinates.first.speed(all_coordinates.last, total_dist) %></strong> km/h
 	</div>
 <% end %>
 
-<% if @user == current_user %>
+<% if logged_in? && @user == current_user %>
 	<%= link_to 'Edit', edit_track_path(@track) %> |
 	<%= link_to "Back", tracks_path %>
 <% end %>

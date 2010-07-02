@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_filter :login_required, :except => [:user_tracks, :user_track, :show]
+  before_filter :login_required, :except => [:user_tracks, :user_track, :show, :public_tracks]
 
   # GET /tracks
   # GET /tracks.xml
@@ -13,20 +13,30 @@ class TracksController < ApplicationController
     end
   end
 
+  def public_tracks
+    @tracks             = Track.public
+    @user               = current_user
+    @all_public_tracks  = true
+    render :action => 'index'
+  end
+
   # show all public tracks for the given user
   # GET /users/1/tracks
   def user_tracks
-    @only_public = true
-    @user = User.find params[:user_id]
-    @tracks = @user.tracks.public
+    @user               = User.find params[:user_id]
+    @friends_with_user  = logged_in? && Friendship.check_status(current_user.id, @user.id) == :friends
+    @only_public        = !@friends_with_user
+    @tracks             = @friends_with_user ? @user.tracks : @user.tracks.public
+    @some_public_tracks = true
     render :action => 'index'
   end
 
   # show a public track for the given user
   # GET /users/1/tracks/12
   def user_track
-    @user = User.find params[:user_id]
-    @track = Track.public.find params[:track_id], :conditions => { :user_id => @user.id }
+    @user               = User.find params[:user_id]
+    @friends_with_user  = logged_in? && Friendship.check_status(current_user.id, @user.id) == :friends
+    @track              = (@friends_with_user ? Track : Track.public).find params[:track_id], :conditions => { :user_id => @user.id }
     render :action => 'show'
   end
 

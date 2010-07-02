@@ -1,2 +1,12 @@
-Welcome home
-Add some interesting things here
+<h3>Welcome to <strong>TrackMe</strong>!</h3>
+
+<p>TrackMe is a real-time GPS-tracking system with social features on top of it.</p>
+
+<p>We currently have:</p>
+<ul>
+	<li>A total of <strong><%= Track.all.map(&:length).sum.round(2) %></strong> km tracked distance!</li>
+	<li><strong><%= Track.public.count %></strong> public tracks (out of <strong><%= Track.count %></strong> total tracks).</li>
+	<li><strong><%= User.count %></strong> registered users.</li>
+	<li>A total of <strong><%= Coordinate.count %></strong> submitted coordinates.</li>
+	<li><%= link_to 'Join the party now', new_user_path %> in less than 30 seconds!</li>
+</ul>
