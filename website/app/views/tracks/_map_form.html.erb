@@ -1,3 +1,7 @@
-<div id="map_<%=h @track.id %>" class="map_div">
-	<script type="text/javascript">load_track(<%=h @track.id %>);</script>
-</div>
+<% if @track && @track.coordinates.size > 0 %>
+	<div id="map_<%=h @track.id %>" class="map_div">
+		<script type="text/javascript"> load_track(<%= h @track.id %>); </script>
+	</div>
+<% else %>
+	<p>There are no coordinates for this track yet.</p>
+<% end %>

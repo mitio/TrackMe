@@ -4,7 +4,7 @@
 
 <p>We currently have:</p>
 <ul>
-	<li>A total of <strong><%= Track.all.map(&:length).sum.round(2) %></strong> km tracked distance!</li>
+	<li>A total of <strong><%= Track.all.map(&:length).sum.to_f.round(2) %></strong> km tracked distance!</li>
 	<li><strong><%= Track.public.count %></strong> public tracks (out of <strong><%= Track.count %></strong> total tracks).</li>
 	<li><strong><%= User.count %></strong> registered users.</li>
 	<li>A total of <strong><%= Coordinate.count %></strong> submitted coordinates.</li>

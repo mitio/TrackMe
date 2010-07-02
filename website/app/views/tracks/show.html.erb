@@ -1,8 +1,3 @@
-<%
-	all_coordinates = @track.coordinates(:order => "tracked_at DESC")
-	prev_coordinate = nil
-	total_dist = dist = 0
-%>
 <div>
 	<div>Name: <%= @track.name %></div>
 	<div>Description: <%= @track.description%></div>
@@ -10,50 +5,11 @@
 
 <br />
 
-<% if all_coordinates.empty? %>
-	<p>There are no coordinates for this track yet.</p>
-<% else %>
-	<%= render :partial => "map_form", :locals => {:track => @track} %>
+<%= render :partial => "map_form" %>
 
-	<table class="list">
-		<thead>
-			<tr>
-				<td colspan="5">Tracked coordinates:</td>
-			</tr>
-			<tr>
-				<td>Lat</td>
-				<td>Lng</td>
-				<td>Time</td>
-				<td>Dist (km)</td>
-				<td>Speed (km/h)</td>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% all_coordinates.each do |c| %>
-				<tr class="<%= cycle(:even, :odd)%>">
-					<td><%= c.lat %></td>
-					<td><%= c.lng %></td>
-					<td><%= c.tracked_at %></td>
-					<td>
-						<%= format("%.2f", dist = c.distance(prev_coordinate)) unless prev_coordinate.nil? %>
-					</td>
-					<td>
-						<%= format("%.2f", c.speed(prev_coordinate, dist)) unless prev_coordinate.nil? %>
-					</td>
-				</tr>
-				<%
-					prev_coordinate = c
-					total_dist += dist
-				%>
-			<% end %>
-		</tbody>
-	</table>
-	<div style="margin: 10px 0;">
-		Total dist: <strong><%= format "%.2f", total_dist %></strong> km<br />
-		Average speed: <strong><%= format "%.2f", all_coordinates.first.speed(all_coordinates.last, total_dist) %></strong> km/h
-	</div>
-<% end %>
+<div id="coordinates-and-dashboard-wrapper">
+	<%= render :partial => 'track_dashboard.html' %>
+</div>
 
 <% if logged_in? && @user == current_user %>
 	<%= link_to 'Edit', edit_track_path(@track) %> |

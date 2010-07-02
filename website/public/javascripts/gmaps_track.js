@@ -56,13 +56,15 @@ function load_google_map(points, trackId) {
 	if (points.length > 0) {
 		var lastPoint = points[points.length - 1];
 		if (!Maps.currentPosition) {
-			Maps.currentPosition = new google.maps.Marker();
-			Maps.currentPosition.setIcon(new google.maps.MarkerImage(
-				'/images/current-location.gif',  // image
-				new google.maps.Size(24, 24),    // size
-				new google.maps.Point(0, 0),     // origin (offset from a sprite's top-left corner)
-				new google.maps.Point(12, 12)    // anchor point
-			))
+			Maps.currentPosition = new google.maps.Marker({
+				clickable: false,
+				icon: new google.maps.MarkerImage(
+					'/images/current-location.gif',  // image
+					new google.maps.Size(24, 24),    // size
+					new google.maps.Point(0, 0),     // origin (offset from a sprite's top-left corner)
+					new google.maps.Point(12, 12)    // anchor point
+				)
+			});
 		}
 		Maps.currentPosition.setPosition(new google.maps.LatLng(lastPoint[0], lastPoint[1]));
 		Maps.currentPosition.setMap(Maps.mainMap);
@@ -87,6 +89,7 @@ function refresh_track(trackId) {
 			// refresh the google map
 			load_google_map(points, trackId);
 			Maps.lastPoints = points;
+			$(document).trigger('new_coordinates_arrived');
 		}
 	});
 }

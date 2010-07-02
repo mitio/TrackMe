@@ -37,7 +37,10 @@ class TracksController < ApplicationController
     @user               = User.find params[:user_id]
     @friends_with_user  = logged_in? && Friendship.check_status(current_user.id, @user.id) == :friends
     @track              = (@friends_with_user ? Track : Track.public).find params[:track_id], :conditions => { :user_id => @user.id }
-    render :action => 'show'
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.dashboard { render :partial => 'track_dashboard.html', :layout => false }
+    end
   end
 
   # GET /tracks/1
@@ -49,9 +52,8 @@ class TracksController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @track }
-      format.json do
-        render :json => @track.points 
-      end
+      format.json { render :json => @track.points }
+      format.dashboard { render :partial => 'track_dashboard.html', :layout => false }
     end
   end
 

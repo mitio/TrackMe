@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout  '/logout', :controller => 'sessions', :action => 'destroy'
 
   map.user_tracks '/users/:user_id/tracks/', :controller => 'tracks', :action => 'user_tracks'
-  map.user_track  '/users/:user_id/tracks/:track_id', :controller => 'tracks', :action => 'user_track'
+  map.user_track  '/users/:user_id/tracks/:track_id.:format', :controller => 'tracks', :action => 'user_track'
   
   map.user_friendship_request '/friendship/:user_id/friendship_request', :controller => 'friendships', :action => 'friendship_request', :conditions => { :method => :post }
   

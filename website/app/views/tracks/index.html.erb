@@ -8,7 +8,10 @@
 	<thead>
 	<tr>
 		<td>Name</td>
+		<td>Length</td>
+		<td>Coords</td>
 		<td>Public?</td>
+		<td>By</td>
 		<td></td>
 	</tr>
 	</thead>
@@ -17,7 +20,10 @@
 		<% @tracks.each do |track| %>
 			<tr class="<%= cycle(:even, :odd) %>">
 				<td><%= track.name %></td>
+				<td><%= track.length.to_f.round(2) %> km</td>
+				<td><%= track.coordinates.size %></td>
 				<td><%= track.is_public ? "yes" : "no" %></td>
+				<td><%= link_to track.user.to_s, user_path(track.user) %></td>
 				<td>
 					<% if @only_public || @some_public_tracks %>
 						<%= link_to 'Show', user_track_path(track.user, track) %>
