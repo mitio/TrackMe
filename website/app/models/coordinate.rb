@@ -31,19 +31,26 @@ class Coordinate < ActiveRecord::Base
 #Distance = e*r = 0.06559*6378.137 km = 418.34 km  or
   
   def distance coordinate
+    return 0.0 unless lat != coordinate.lat && lng != coordinate.lng
+
     lat1 = self.lat / 180 * Math::PI
     lng1 = self.lng / 180 * Math::PI
     lat2 = coordinate.lat / 180 * Math::PI
     lng2 = coordinate.lng / 180 * Math::PI
-     
-    e = Math.acos( Math.sin(lat1) * Math.sin(lat2) +
-                  Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1))
+
+    begin
+      e = Math.acos( Math.sin(lat1) * Math.sin(lat2) +
+                     Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1))
+    rescue Exception => e
+      e = 0
+    end
+
     return e * EARTH_RADIUS
   end
   
   def speed coordinate, dist = nil
-    dist = dist.nil? ? self.distance(coordinate) : dist
-    
+    dist ||= self.distance(coordinate)
+
     if (self.tracked_at - coordinate.tracked_at != 0)
       return dist / ((self.tracked_at - coordinate.tracked_at).abs / 3600 )
     end
