@@ -23,7 +23,7 @@ function load_google_map(points, trackId) {
 		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	};
-
+console.log(document.getElementById("map_" + trackId), myOptions)
 	Maps.mainMap = Maps.mainMap || new google.maps.Map(document.getElementById("map_" + trackId), myOptions);
 
 	var trackCoordinates = new Array();
