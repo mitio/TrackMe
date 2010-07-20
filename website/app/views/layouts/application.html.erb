@@ -18,6 +18,7 @@
 </head>
 <body class="<%= h params[:controller] %> action-<%= h params[:action] %>">
 	<div class="main">
+		<div class="background-gradient"></div>
 
 		<div class="header_box">
 			<%= link_to '<h1>Track Me</h1>', root_path %>
@@ -34,8 +35,11 @@
 		</div>
 
 		<div class="content">
-			<p class="notice"><%= flash[:notice] %></p>
-			<p class="error"><%= flash[:error] %></p>
+			<% [:notice, :error].each do |alert_type| %>
+				<% next if flash[alert_type].blank? %>
+				<p class="<%= h alert_type %>"><%= flash[alert_type] %></p>
+			<% end %>
+
 			<%= yield %>
 		</div>
 

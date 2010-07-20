@@ -1,6 +1,24 @@
 body {
-	background-color: #775B30;
+	background: #b5b5b5 url(/images/background.png) top left repeat;
 	color: #333;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	border: 0px solid white;
+	padding: 0;
+}
+
+body .background-gradient {
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 328px;
+	background: #b5b5b5 url(/images/background-gradient.png) top left repeat-x;
 }
 
 body, p, ol, ul, td {
@@ -103,15 +121,19 @@ form .section {
 
 .main {
 	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	border: solid 5px #E0E0E0;
-	min-height: 500px; 
-	background-color: #F0D2A3;
+	margin: 0 auto;
 
-	box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
-	-moz-box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
-	-webkit-box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+	border: 5px solid #E0E0E0;
+	border-width: 0 5px;
+	background: #F0D2A3 url(/images/orange-background.jpg) top left repeat;
+
+	height: auto !important; /* real browsers */
+	height: 100%; /* IE6: treaded as min-height*/
+	min-height: 100%; /* real browsers */
+
+	box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.4);
 }
 
 .main_frame {
@@ -138,6 +160,7 @@ ul.menu li {
 }
 
 ul.menu li a {
+	text-decoration: none;
 	float: left;
 	padding: 4px 13px;
 	margin: 4px 4px 0 4px;
@@ -145,9 +168,12 @@ ul.menu li a {
 }
 
 ul.menu li.active a {
-	background-color: #F0D2A3;
+	font-weight: bold;
+	color: #222;
+	background: #F0D2A3 url(/images/orange-background.jpg) top left repeat;
 	padding: 8px 17px 4px 17px;
 	margin: 0;
+	text-shadow: 0px 1px 0px #fff;
 }
 
 
@@ -194,10 +220,12 @@ fieldset legend a {
 table.list {
 	/*border: 1px solid #000;*/
 	border-collapse: collapse;
+	margin: 5px 0 10px 0;
 }
 
-table.list td {
-	padding-left: 5px;
+table.list td,
+table.list th {
+	padding: 1px 10px;
 }
 
 table.list thead {
@@ -317,9 +345,9 @@ table.list tr.odd th {
 
 a.approve,
 a.reject {
-  font-weight: bold;
-  text-decoration: none;
-  margin-left: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-right: 10px;
 }
 
 a.approve:hover,
@@ -335,4 +363,68 @@ a.reject {
 	color: red;
 }
 
+
+/* some marketing tricks */
+#fishing-pool {
+	width: 100%;
+	margin: -5px 0 70px 0;
+}
+
+#fishing-pool td {
+	padding: 40px 0 0 0;
+	width: 33%;
+	vertical-align: top;
+	text-align: center;
+	background: transparent url(/images/lightning.png);
+}
+
+#fishing-pool .total {
+	display: block;
+}
+
+#fishing-pool .total strong {
+	color: #433;
+	display: block;
+	font-size: 130px;
+	line-height: 110%;
+	font-weight: normal;
+	letter-spacing: -10px;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+#fishing-pool .total span {
+	font-size: 20px;
+	color: #766;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+#homepage-texts {
+	padding: 10px 20px;
+	text-align: center;
+}
+
+#homepage-header {
+	text-shadow: 0px 1px 0px #fff;
+}
+
+#homepage-header small {
+	font-size: 14px;
+	font-weight: normal;
+	color: #986;
+	margin-left: 15px;
+	font-style: italic;
+}
+
+#homepage-statistics {
+	width: 360px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 20px;
+	color: #876;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+#homepage-statistics .important {
+	color: #000;
+}
 

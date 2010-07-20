@@ -1,2 +1,44 @@
-Welcome home
-Add some interesting things here
+<%
+	@total_distance = Track.all.map(&:length).sum.to_f.round(2)
+	@total_coordinates = Coordinate.count
+	@total_users = User.count
+%>
+<table id="fishing-pool" cellspacing="0">
+	<tr>
+		<td>
+			<div class="total">
+				<strong><%= @total_distance.round %></strong>
+				<span>km tracked distance!</span>
+			</div>
+		</td>
+		<td>
+			<div class="total">
+				<strong><%= @total_coordinates %></strong>
+				<span>submitted coordinates!</span>
+			</div>
+		</td>
+		<td>
+			<div class="total">
+				<strong><%= @total_users %></strong>
+				<span>registered users!</span>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<div id="homepage-texts">
+	<h3 id="homepage-header">
+		Welcome to <strong>TrackMe</strong>!
+		<small>A real-time GPS-tracking system with social features on top of it.</small>
+	</h3>
+
+	<div id="homepage-statistics">
+		<ul>
+			<li>A total of <strong><%= @total_distance %></strong> km tracked distance!</li>
+			<li><strong><%= Track.public.count %></strong> public tracks (out of <strong><%= Track.count %></strong> total tracks).</li>
+			<li><strong><%= @total_users %></strong> registered users.</li>
+			<li>A total of <strong><%= @total_coordinates %></strong> submitted coordinates.</li>
+			<li class="important"><%= link_to 'Join the party now', new_user_path %> in less than 30 seconds!</li>
+		</ul>
+	</div>
+</div>

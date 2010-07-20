@@ -15,6 +15,16 @@ class Track < ActiveRecord::Base
     end
   end
 
+  def length
+    return 0 unless coordinates.size > 1
+    length, last_coordinate = 0, coordinates.first
+    coordinates[1..-1].each do |coordinate|
+      length += coordinate.distance(last_coordinate)
+      last_coordinate = coordinate
+    end
+    length
+  end
+
   def randomize(count = 20)
     gen = CoordinatesGen.new
     i = 0
